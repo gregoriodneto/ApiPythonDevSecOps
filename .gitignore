@@ -1,0 +1,35 @@
+# Ambiente virtual
+venv/
+.env
+*.env
+
+# Bytecode e cache do Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Arquivos de log
+*.log
+
+# Configuração do editor
+.vscode/
+.idea/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Docker
+*.tar
+*.img
+
+# Pasta de build/distribuição
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Arquivos de dependência lock (opcional, se você não estiver usando)
+Pipfile.lock
+poetry.lock
