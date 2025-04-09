@@ -34,7 +34,10 @@ jobs:
       - name: 🛡️ Rodar ZAP scan
         run: |
           docker run --rm --network host -v "$(pwd)/zap-report:/zap/wrk" zaproxy/zap-stable \
-            zap-baseline.py -t http://localhost:8000 -J report_json.json -w report_md.md -r report_html.html || true
+            zap-baseline.py -t http://localhost:8000 \
+            -J /zap/wrk/report_json.json \
+            -w /zap/wrk/report_md.md \
+            -r /zap/wrk/report_html.html || true
 
       - name: 📤 Salvar relatório ZAP
         uses: actions/upload-artifact@v4
