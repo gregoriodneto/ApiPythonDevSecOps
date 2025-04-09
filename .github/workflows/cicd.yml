@@ -17,7 +17,24 @@ jobs:
 
       - name: 🐳 Build e rodar app + zap via docker-compose
         run: |
-          docker compose -f docker-compose.zap.yml up --abort-on-container-exit
+          docker build -t apipythondevsecops-app .
+          docker run -d --name python-app -p 8000:8000 apipythondevsecops-app
+
+      - name: 🕓 Esperar app subir
+        run: |
+          for i in {1..20}; do
+            if curl -s http://localhost:8000 > /dev/null; then
+              echo "✅ App está no ar!"
+              break
+            fi
+            echo "⏳ Esperando app subir..."
+            sleep 3
+          done
+
+      - name: 🛡️ Rodar ZAP scan
+        run: |
+          docker run --rm --network="host" -v "$(pwd)/zap-report:/zap/wrk" zaproxy/zap-stable \
+            zap-baseline.py -t http://localhost:8000 -r report_html.html -J report_json.json -w report_md.md
 
       - name: 📤 Salvar relatório ZAP
         uses: actions/upload-artifact@v4
