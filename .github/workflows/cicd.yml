@@ -12,6 +12,9 @@ jobs:
       - name: 📦 Checkout do código
         uses: actions/checkout@v4
 
+      - name: 🗂️ Criar pasta zap-report
+        run: mkdir -p zap-report
+
       - name: 🐳 Build e rodar app + zap via docker-compose
         run: |
           docker compose -f docker-compose.zap.yml up --abort-on-container-exit
@@ -20,7 +23,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zap-report
-          path: zap-report/report_html.html
+          path: zap-report/*
 
   docker-deploy:
     runs-on: ubuntu-latest
