@@ -38,9 +38,10 @@ jobs:
         run: sleep 10
 
       - name: 🛡️ Escanear com OWASP ZAP
-        uses: zaproxy/action-baseline@v0.7.0
+        uses: zaproxy/action-baseline@v0.11.0
         with:
           target: 'http://localhost:8000'
+          docker_name: zaproxy/zap-stable
           cmd_options: '-T 5 -r zap-report.html'
 
       - name: 📄 Listar arquivos antes do upload
