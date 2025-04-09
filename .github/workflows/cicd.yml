@@ -43,8 +43,15 @@ jobs:
           target: 'http://localhost:8000'
           cmd_options: '-T 5 -r zap-report.html'
 
+      - name: 👻 Forçar resolução de upload-artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dummy
+          path: README.md
+        if: false
+
       - name: 📤 Salvar relatório ZAP
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: zap-report
           path: zap-report.html
