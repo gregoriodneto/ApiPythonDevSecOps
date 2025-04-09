@@ -67,6 +67,14 @@ jobs:
       - name: 🚀 Deploy no servidor remoto
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            # Instalar Docker
+            sudo yum update -y
+            sudo amazon-linux-extras enable docker
+            sudo yum install docker -y
+            sudo systemctl start docker
+            sudo systemctl enable docker
+
+            # Puxar e rodar o container
             docker pull ${{ secrets.DOCKER_USERNAME }}/python-app:latest
             docker stop python-app || true
             docker rm python-app || true
