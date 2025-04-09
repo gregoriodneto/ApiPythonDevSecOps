@@ -75,8 +75,8 @@ jobs:
             sudo systemctl enable docker
 
             # Puxar e rodar o container
-            docker pull ${{ secrets.DOCKER_USERNAME }}/python-app:latest
-            docker stop python-app || true
-            docker rm python-app || true
-            docker run -d --name python-app -p 80:8000 ${{ secrets.DOCKER_USERNAME }}/python-app:latest
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/python-app:latest
+            sudo docker stop python-app || true
+            sudo docker rm python-app || true
+            sudo docker run -d --name python-app -p 80:8000 ${{ secrets.DOCKER_USERNAME }}/python-app:latest
           EOF
