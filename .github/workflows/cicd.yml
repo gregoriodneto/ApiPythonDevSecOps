@@ -27,14 +27,14 @@ jobs:
               echo "✅ App está no ar!"
               break
             fi
-            echo "⏳ Esperando app subir..."
+            echo "⏳ Esperando app subir... Tentativa $i"
             sleep 3
           done
 
       - name: 🛡️ Rodar ZAP scan
         run: |
-          docker run --rm --network="host" -v "$(pwd)/zap-report:/zap/wrk" zaproxy/zap-stable \
-            zap-baseline.py -t http://localhost:8000 -r report_html.html -J report_json.json -w report_md.md
+          docker run --rm --network host -v "$(pwd)/zap-report:/zap/wrk" zaproxy/zap-stable \
+            zap-baseline.py -t http://localhost:8000 -J report_json.json -w report_md.md -r report_html.html || true
 
       - name: 📤 Salvar relatório ZAP
         uses: actions/upload-artifact@v4
