@@ -33,3 +33,8 @@ dist/
 # Arquivos de dependência lock (opcional, se você não estiver usando)
 Pipfile.lock
 poetry.lock
+
+id_rsa
+*.pem
+*.key
+secrets.json
