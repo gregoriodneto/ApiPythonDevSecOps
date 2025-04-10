@@ -81,7 +81,7 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/python-app:latest
             sudo docker stop python-app || true
             sudo docker rm python-app || true
-            sudo docker run -d --name python-app -p 80:8000 ${{ secrets.DOCKER_USERNAME }}/python-app:latest
+            sudo docker r -d --name python-app -p 80:8000 ${{ secrets.DOCKER_USERNAME }}/python-app:latest
           EOF
 
       - name: 🔔 Notificar sucesso no Slack
