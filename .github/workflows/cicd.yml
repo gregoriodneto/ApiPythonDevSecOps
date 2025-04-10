@@ -83,3 +83,21 @@ jobs:
             sudo docker rm python-app || true
             sudo docker run -d --name python-app -p 80:8000 ${{ secrets.DOCKER_USERNAME }}/python-app:latest
           EOF
+
+      - name: 🔔 Notificar sucesso no Slack
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{
+            \"text\": \"✅ *Deploy realizado com sucesso!*\n\n📦 Repositório: *${{ github.repository }}*\n🌿 Branch: *${{ github.ref_name }}*\n👤 Autor: *${{ github.actor }}*\n💬 Commit: _${{ github.event.head_commit.message }}_\n🔗 <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Ver detalhes do pipeline>\"
+          }" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: ❌ Notificar falha no Slack
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{
+            \"text\": \"🚨 *Falha no deploy!*\n\n📦 Repositório: *${{ github.repository }}*\n🌿 Branch: *${{ github.ref_name }}*\n👤 Autor: *${{ github.actor }}*\n💬 Commit: _${{ github.event.head_commit.message }}_\n🔗 <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Ver detalhes do pipeline>\"
+          }" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
