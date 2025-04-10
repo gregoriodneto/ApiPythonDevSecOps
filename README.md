@@ -114,19 +114,19 @@ sudo docker run -d --name python-app -p 80:8000 seuusuario/python-app:old-tag
 # 📋 Requisitos para Deploy
 
 # - Docker deve estar instalado no servidor remoto
-# - SSH configurado com chave privada (armazenada como SSH_PRIVATE_KEY no GitHub Secrets)
+  - SSH configurado com chave privada (armazenada como SSH_PRIVATE_KEY no GitHub Secrets)
 
 # 🔐 Secrets obrigatórios no GitHub Actions:
-# - DOCKER_USERNAME
-# - DOCKER_PASSWORD
-# - SSH_PRIVATE_KEY
-# - SSH_USER
-# - SSH_HOST
+  - DOCKER_USERNAME
+  - DOCKER_PASSWORD
+  - SSH_PRIVATE_KEY
+  - SSH_USER
+  - SSH_HOST
 
 # 💡 Melhorias Futuras (para evolução do projeto):
-# - Implementar testes automatizados
-# - Adicionar monitoramento com Prometheus e Grafana
-# - Incluir linting e formatação automática
-# - Utilizar estratégia de deploy blue/green ou canário
+  - Implementar testes automatizados
+  - Adicionar monitoramento com Prometheus e Grafana
+  - Incluir linting e formatação automática
+  - Utilizar estratégia de deploy blue/green ou canário
 
-# ✅ Feito com ❤️ por [Greg]
+✅ Feito com ❤️ por [Greg]
